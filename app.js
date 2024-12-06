@@ -1,6 +1,7 @@
 // Third Party Modules
 const express = require('express');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 
 // Local Modules
 const { AppError } = require('./utils/app-error');
@@ -10,6 +11,16 @@ const apiRouter = require('./routes/api-route');
 const app = express();
 const port = 8000;
 const host = '127.0.0.1';
+
+mongoose
+  .connect('mongodb://localhost:27017/book-management-system')
+  .then(() => {
+    console.log('[+] database connected successfully.');
+  })
+  .catch((err) => {
+    console.error('[-] database connection err', err.message);
+    process.exit(1);
+  });
 
 // Logger
 app.use(morgan('dev'));

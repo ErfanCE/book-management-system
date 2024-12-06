@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const indexRouter = require('./index-route');
+const authorRouter = require('./author-route');
 
-router.use('/index', indexRouter);
+router.use('/authors', authorRouter);
 
 module.exports = router;
